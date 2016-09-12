@@ -45,10 +45,12 @@ RUN \
 	make install && \
 	echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib >> ~/.bashrc
 
+#useful converter
 RUN \
 	apt-get install -y imagemagick
-	
+
 #cleanup
 RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /tmp/*
 
 CMD ["bash"]
