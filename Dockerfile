@@ -15,12 +15,8 @@ RUN \
 
 #installing dependencies for osra
 RUN \
-	apt-get install -y libtclap-dev libpotrace0  libpotrace-dev  libocrad-dev libgraphicsmagick++1-dev libgraphicsmagick++1-dev libgraphicsmagick++3 libgraphicsmagick1-dev libgraphicsmagick3 libnetpbm10-dev libpoppler-dev libpoppler-cpp-dev
-
-
-#installing openbabel and its dependencies
-RUN \
-	apt-get  install -y libeigen3-dev
+	apt-get install -y libtclap-dev libpotrace0  libpotrace-dev  libocrad-dev libgraphicsmagick++1-dev libgraphicsmagick++1-dev libgraphicsmagick++3 && \
+	apt-get install -y libeigen3-dev libgraphicsmagick1-dev libgraphicsmagick3 libnetpbm10-dev libpoppler-dev libpoppler-cpp-dev libleptonica-dev wget tesseract-ocr tesseract-ocr-eng
 
 RUN \
 		cd /tmp/openbabel && \
@@ -40,7 +36,7 @@ RUN \
 #installing osra
 RUN \
 	cd /tmp/osra && \
-	./configure  && \
+	./configure --with-tesseract && \
 	make all && \
 	make install && \
 	echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib >> ~/.bashrc
